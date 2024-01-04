@@ -1,0 +1,39 @@
+function getColor(CATEGORIA) {
+    switch (CATEGORIA) {
+        case 'URBANO':
+            return '#800026';
+        case 'RURAL':
+            return '#9e9ac8';
+        case 'SUBRURAL': // Agrega aquí la tercera categoría
+            return '#6a51a3'; // Asigna el color correspondiente a la tercera categoría
+        default:
+            return '#000000'; // Color por defecto si la categoría no coincide con ninguna de las especificadas
+    }
+}
+
+// Estilo para cada feature del GeoJSON
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.CATEGORIA),
+        weight: 1,
+        opacity: 1,
+        color: 'white',
+        dashArray: '0',
+        fillOpacity: 0.6
+    };
+}
+
+// Contenido del popup para cada feature
+function popupContent(feature) {
+    return (
+        "<div id='Estilo1'><h3>Datos Catastrales</h3></div>" +
+        "<hr class='hrx' style='color: #ef7d26;' align='left' noshade='noshade' size='1' width='100%' />" +
+        "<div id='Estilo3a'>" +
+        "<b> Departamento  </b>" + feature.properties.DEPARTA + "<br>" +
+        "<b> Catastro N°   </b>" + feature.properties.CATASTRO + "<br>" +
+        "<b> Tipo </b>" + feature.properties.CATEGORIA + "<br>" +
+        "<b> Plano N°  </b>" + feature.properties.PLANO + "<br>" +
+        
+        "</div>"
+    );
+}

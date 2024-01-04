@@ -1,0 +1,1 @@
+{ "type": "Feature", "properties": { "Id": 0, "NOMBRE": "Siwok", "ABASTECIMI": "Pozo distribucion tanque", "NUM_FAMILI": "18", "PARTICULAR": null, "PRIORIDAD": null, "POINT_X": -63.082554, "POINT_Y": -23.39135400004, "TIPO_ABAST": "Pozo de agua" }, "geometry": { "type": "Point", "coordinates": [ -63.082554000000236, -23.391354000042064 ] } },

@@ -1,7 +1,29 @@
+
+
+
+
+var MarkerESC = {
+    icon:{ iconUrl: 'images/school-icon-png-14042.png',iconSize: [40, 40], // Tamaño del ícono
+    iconAnchor: [20, 40],
+
+    },   
+    radius: 6,
+    fillColor: "#f2abab",
+    color: "#000",
+    weight: 1,
+    opacity: 0.7,
+    fillOpacity: 0.8
+};
+
+function styleESC(feature){
+    return {MarkerESC
+    }
+};
+
 // Contenido del popup para cada feature
 function popupContentEsc(feature) {
     return (
-        "<div id='Estilo1'><h3>Descripción</h3></div>" +
+        "<div id='Estilo1'><h3>Datos de Intituciones Escolares</h3></div>" +
         "<hr class='hrx' style='color: #ef7d26;' align='left' noshade='noshade' size='1' width='100%' />" +
         "<div id='Estilo3a'>" +
         "<b> Nombre de la localidad: </b>" + feature.properties.localidad + "<br>" +
@@ -13,11 +35,16 @@ function popupContentEsc(feature) {
         "<b> Acceso al Agua: </b>" + feature.properties.Agua_potable + "<br>" +
         "<b> Energía Electrica: </b>" + feature.properties.Energ__a_el__ctrica + "<br>" +
         "<b> Tipo de fuente de energia: </b>" + feature.properties.Fuentes_de_energ__a_el__ctrica + "<br>" +
-        
+        "<br>" +
+        "<b> Fuente de Información:  </b> <br>" +
+        "<b> Fecha de actualización:  </b> 2023 " +
 
         "</div>"
     );
 }
+
+
+
 
 
 var escuelas = {

@@ -59,12 +59,33 @@
 			border: transparent;
 			box-shadow: none;
 		}
+
+		/* Estilos CSS para la leyenda */
+		.info.legend {
+			background: white;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 12px;
+		}
+
+		/* Estilos para los círculos de colores en la leyenda */
+		.info.legend i {
+			width: 12px;
+			height: 12px;
+			display: inline-block;
+			border-radius: 50%;
+			margin-right: 5px;
+		}
 	</style>
 
 </head>
 
 <body>
+
+
 	<div id="map"></div>
+
 	<script>
 
 		// con VAR se crean las capas basese a visualizar => L.tileLayer.wms es la propiedad que tare los TileLayer y/o wms //
@@ -112,7 +133,7 @@
 		});
 
 		var MESAS = L.geoJSON(mesa, {
-			
+
 			onEachFeature: function (feature, layer) {
 				var content = popupContentMesa(feature);
 				layer.bindPopup(content);
@@ -120,7 +141,11 @@
 		});
 
 		var ESC = L.geoJSON(escuelas, {
-			
+			pointToLayer: function (feature, latlng){
+				return L.circleMarker(latlng, MarkerESC);
+			},
+			style: styleESC,
+	
 			onEachFeature: function (feature, layer) {
 				var content = popupContentEsc(feature);
 				layer.bindPopup(content);
@@ -128,10 +153,10 @@
 		});
 
 		var PUESTOS = L.geoJSON(puestos, {
-			pointToLayer: function(feature,latlng){
+			pointToLayer: function (feature, latlng) {
 				return L.circleMarker(latlng, MarkerOptions);
 			},
-			
+			style: stylePuestos,
 			onEachFeature: function (feature, layer) {
 				var content = popupContentPuestos(feature);
 				layer.bindPopup(content);
@@ -158,65 +183,73 @@
 
 		var overlayMaps = [
 			{
-			group: "Linea de base",
-			layers: [
+				group: "Linea de base",
+				layers: [
 
-				{
-					active: false,
-					name: "Departamento",
-					layer: DEPTO,
-					transparent: true,
-					opacity: 0.5,
-				},
-				{
-					active: false,
-					name: "Rivadavia Banda Norte",
-					layer: RBN,
-					transparent: true,
-					opacity: 0.5,
-				}, {
-					active: false,
-					name: "Rivadavia Banda Sur",
-					layer: RBS,
-					transparent: true,
-					opacity: 0.5,
-				},
-				{
-					active: false,
-					name: "Catastros",
-					layer: catastrosL,
-					transparent: true,
-					opacity: 0.5,
-				},
-			]
-		},
-		{
-			group: "Info de Agua",
-			layers: [
+					{
+						active: false,
+						name: "Departamento",
+						layer: DEPTO,
+						transparent: true,
+						opacity: 0.5,
+					},
+					{
+						active: false,
+						name: "Rivadavia Banda Norte",
+						layer: RBN,
+						transparent: true,
+						opacity: 0.5,
+					}, {
+						active: false,
+						name: "Rivadavia Banda Sur",
+						layer: RBS,
+						transparent: true,
+						opacity: 0.5,
+					},
+					{
+						active: false,
+						name: "Catastros",
+						layer: catastrosL,
+						transparent: true,
+						opacity: 0.5,
+					},
+				]
+			},
+			{
+				group: "Info de Agua",
+				layers: [
 
-				{
-					active: false,
-					name: "Mesas del agua",
-					layer: MESAS,
-					transparent: true,
-					opacity: 0.5,
-				},
-				{
-					active: false,
-					name: "Escuelas",
-					layer: ESC,
-					transparent: true,
-					opacity: 0.5,
-				}, {
-					active: false,
-					name: "Puestos y Comunidades",
-					layer: PUESTOS,
-					transparent: true,
-					opacity: 0.5,
-				},
-				
-			]
-		}
+					{
+						active: false,
+						name: "Mesas del agua",
+						layer: MESAS,
+						transparent: true,
+						opacity: 0.5,
+					},
+					{
+						active: false,
+						name: "Escuelas",
+						layer: ESC,
+						transparent: true,
+						opacity: 0.5,
+					},
+
+
+				]
+			},
+			{
+				group: "Acceso al Agua",
+				layers: [
+					{
+						active: false,
+						name: "Acceso al agua por Puesto o Comunidad",
+						layer: PUESTOS,
+						transparent: true,
+						opacity: 0.5,
+					},
+
+				]
+			}
 		];
 
 
@@ -227,7 +260,7 @@
 				var img = L.DomUtil.create('img');
 				img.src = 'images/logow.png';
 				img.style.width = '20vh', // vh para que sea responsive
-					img.style.height = 'auto'; // auto para que sera responsive
+				img.style.height = 'auto'; // auto para que sera responsive
 				return img;
 			},
 			onRemove: function (map) { },
@@ -237,50 +270,81 @@
 		}
 		L.control.watermark(position = 'topleft').addTo(map);
 
+		var panelLayers = new L.Control.PanelLayers(baseLayers, null,
+			{
+				compact: true,
+				collapsed: false,
+				collapsibleGroups: true,
+				position: 'topleft',
+			});
+		map.addControl(panelLayers);
 		//panel de control agregado//
-		var panelLayers = new L.Control.PanelLayers(baseLayers, overlayMaps,
+		var panelLayers1 = new L.Control.PanelLayers(null, overlayMaps,
 			{
 				compact: true,
 				//collapsed: true,
 				collapsibleGroups: true,
 				position: 'topleft',
 			});
-		map.addControl(panelLayers);
+		map.addControl(panelLayers1);
+		//panel de control agregado//
 
-		// Insertando un título en el mapa
+
+		// Insertando buscador
+
 		var title = L.control(
 		);
 		title.onAdd = function (map) {
 			var div = L.DomUtil.create('div', 'info');
 			div.innerHTML +=
-				'<h2>Buscador </h2>';
+				'<h2>Buscador </h2> ';
 			return div;
 		};
 		title.addTo(map);
-		//buscador de barrios. Solo para datos que sean json o geojson
+
+		// //buscador de datos. Solo para datos que sean json o geojson
+
 		var searchControl = new L.Control.Search({
-			layer: barrio,
-			propertyName: 'BARRIO',
+			layer: PUESTOS,
+			propertyName: 'TIPO_ABAST',
 			circleLocation: false,
 			position: 'topright',
 			collapsed: false
 		});
-		searchControl.on('search_locationfound', function (e) {
-			e.layer.setStyle({ fillColor: '#3f0', color: '#0f0' });
-		})
-			.on('search_collapsed', function (e) {
-				barrio.eachLayer(function (layer) { //restauramos el color del elemento
-					barrio.resetStyle(layer);
-				});
-			});
+
 		map.addControl(searchControl);
 
-		//Añadir lat/log a un punto en el mapa
-		function onMapClick(e) { alert("Haz clic en el Mapa"); }
-		map.on('click', onMapClick);
+		searchControl.on('search:locationfound', function (e) {
+			var tipoAbastecimiento = e.text; // Tipo de abastecimiento buscado
+
+			// Restaurar el estilo de todas las capas
+			PUESTOS.eachLayer(function (layer) {
+				PUESTOS.resetStyle(layer);
+			});
+
+			// Iterar sobre todas las capas y resaltar las que coinciden con el tipo de abastecimiento buscado
+			PUESTOS.eachLayer(function (layer) {
+				if (layer.feature.properties.TIPO_ABAST === tipoAbastecimiento) {
+					layer.setStyle({ fillColor: '#3f0', color: '#6bbdc9' });
+				}
+			});
+		}).on('search:collapsed', function (e) {
+			// Restaurar el estilo de todas las capas al cerrar la búsqueda
+			PUESTOS.eachLayer(function (layer) {
+				PUESTOS.resetStyle(layer);
+			});
+		});
+
+
+		// Llamada a la función para crear la leyenda
+		createLegend();
+
+
+
+
 
 		//se le agregan los controles//
-		L.control.zoom({ position: 'topleft' }).addTo(map);
+		L.control.zoom({ position: 'topright' }).addTo(map);
 		L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
 	</script>
 

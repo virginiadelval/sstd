@@ -1,18 +1,21 @@
 // Contenido del popup para cada feature
 function popupContentMesa(feature) {
     return (
-        "<div id='Estilo1'><h3>Descripción</h3></div>" +
+        "<div id='Estilo1'><h3>Data Mesa del Agua </h3></div>" +
         "<hr class='hrx' style='color: #ef7d26;' align='left' noshade='noshade' size='1' width='100%' />" +
         "<div id='Estilo3a'>" +
         "<b> Nombre de la localidad: </b>" + feature.properties.Name + "<br>" +
-        "<b> Situación: </b>" + feature.properties.SITUACION + "<br>" +
-        "<b> Estado: </b>" + feature.properties.ESTADO + "<br>" +
+        
+        "<b> Estado de Construcción: </b>" + feature.properties.ESTADO + "<br>" +
         "<b> Construye: </b>" + feature.properties.CONSTRUYE + "<br>" +
         "<b> Volumen de Construcción: </b>" + feature.properties.VOL_CONST + "<br>" +
-        "<b> Numero de Familias: </b>" + feature.properties.Num_fami + "<br>" +
-        "<b> Sistema: </b>" + feature.properties.NOm + "<br>" +
+        "<b> Número de Familias: </b>" + feature.properties.Num_fami + "<br>" +
+        "<b> Nombre de la Comunidad o responsable: </b>" + feature.properties.NOm + "<br>" +
         "<b> Tipo de Construcción: </b>" + feature.properties.Tipo_const + "<br>" +
         "<b> Profundidad: </b>" + feature.properties.Profundida + "<br>" +
+        "<br>" +
+        "<b> <i> Fuente de Información:  </b> Mesas del Agua <br>" +
+        "<b> Fecha de actualización:  </b> 2023 </i> " +
 
         "</div>"
     );

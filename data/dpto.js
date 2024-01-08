@@ -2,7 +2,7 @@
 // Contenido del popup para cada feature
 function popupContentData(feature) {
     return (
-        "<div id='Estilo1'><h3>Descripcion</h3></div>" +
+        "<div id='Estilo1'><h3>Descripción</h3></div>" +
         "<hr class='hrx' style='color: #ef7d26;' align='left' noshade='noshade' size='1' width='100%' />" +
         "<div id='Estilo3a'>" +
         "<b> Departamento  </b>" + feature.properties.Name + "<br>" +

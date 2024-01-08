@@ -1,24 +1,20 @@
 
+// var redIcon = new L.icon({
+//     iconUrl: './images/school-icon-png-14042.png',
+//     shadowUrl: './images/marker-shadow.png',
+//     iconSize: [35, 45], // Tamaño del ícono
+//     iconAnchor: [17, 42], // Punto del ícono que se conecta con la ubicación
+//     popupAnchor: [1, -32], // Punto donde aparecerá el popup en relación con el ícono
+//     shadowSize: [36, 16], // Tamaño de la sombra
+//     shadowAnchor: [10, 12], // Punto de la sombra que se conecta con la ubicación
+// });
+var escIcon = L.AwesomeMarkers.icon({
+    icon: 'fa fa-university',
+    markerColor: 'grey',
+    iconColor: 'white',
+    prefix: 'fa',
 
-
-
-var MarkerESC = {
-    icon:{ iconUrl: 'images/school-icon-png-14042.png',iconSize: [40, 40], // Tamaño del ícono
-    iconAnchor: [20, 40],
-
-    },   
-    radius: 6,
-    fillColor: "#f2abab",
-    color: "#000",
-    weight: 1,
-    opacity: 0.7,
-    fillOpacity: 0.8
-};
-
-function styleESC(feature){
-    return {MarkerESC
-    }
-};
+});
 
 // Contenido del popup para cada feature
 function popupContentEsc(feature) {
@@ -42,10 +38,6 @@ function popupContentEsc(feature) {
         "</div>"
     );
 }
-
-
-
-
 
 var escuelas = {
 "type": "FeatureCollection",

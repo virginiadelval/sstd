@@ -40,4 +40,11 @@ var dengueI = L.AwesomeMarkers.icon({
     iconColor: '#76448A ',
     markerColor: 'green',
     }); 
-            
+
+    var IconEscuela = L.AwesomeMarkers.icon({
+        icon: 'leaf',
+        iconColor: '#76448A ',
+        markerColor: 'green',
+        });
+
+ 

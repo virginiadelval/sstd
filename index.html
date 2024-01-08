@@ -17,22 +17,40 @@
 	<link rel="stylesheet" href="css/leaflet-panel-layers.css" />
 	<link rel="stylesheet" href="css/L.Control.HtmlLegend.css" />
 	<link rel="stylesheet" href="css/leaflet-search.css" />
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+	<link rel="stylesheet" href="css/leaflet.awesome-markers.css" />
 
 
+	<!-- complemento awesomeMarker-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+
+	<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+
 	<script src="js/leaflet-panel-layers.src.js"></script>
 	<script src="js/leaflet-panel-layers.js"></script>
 	<script src="js/L.Control.Appearance.js"></script>
 	<script src="js/jquery-3.5.1.js"></script>
 	<script src="js/L.Control.HtmlLegend.js"></script>
 	<script src="js/leaflet-search.js"></script>
+	<script src="js/leaflet.awesome-markers.js"></script>
+	<script src="js/leaflet.awesome-markers.min.js"></script>
+
 
 	<!-- en la Carpeta DATA estan los js como capas-->
+	<script type="text/javascript" src="data/provincia.js"></script>
+	<script type="text/javascript" src="data/loc_cabecera.js"></script>
+	<script type="text/javascript" src="data/loc_secundarias.js"></script>
+	<script type="text/javascript" src="data/rutas.js"></script>
 	<script type="text/javascript" src="data/catastros.js"></script>
 	<script type="text/javascript" src="data/dpto.js"></script>
 	<script type="text/javascript" src="data/mesasdelagua.js"></script>
 	<script type="text/javascript" src="data/escuelas.js"></script>
 	<script type="text/javascript" src="data/puestosdata.js"></script>
+	<script type="text/javascript" src="data/info_RelevSolidaridad.js"></script>
+	
 	<style>
 		#map {
 			width: 100%;
@@ -99,9 +117,49 @@
 			attribution: '&copy;<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Google</a>',
 			maxZoom: 18
 		});
-
+		var argenmap = L.tileLayer('https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png', {
+			opacity: 1.0,
+			attribution: '<a href="https://www.ign.gob.ar/AreaServicios/Argenmap/IntroduccionV2"  target="_blank"> ArgenMap </a>',
+			maxZoom: 18,
+		});
 
 		// Crear una capa GeoJSON y añadir al mapa
+		var Prov = L.geoJSON(provincia, {
+			style: function (feature) {
+				return {
+					fillColor: 'whait',
+					weight: 3,
+					opacity: 0.5,
+					color: 'black',
+					dashArray: '3',
+					fillOpacity: 0.0
+				}
+			}
+		});
+		var Rutas = L.geoJSON(rutas, {
+			style: styleRuta
+			
+		});
+		var Localidad = L.geoJSON(locCabecera, {
+			pointToLayer: function (feature, latlng) {
+				return L.circleMarker(latlng, IconLocCab );
+			},
+			onEachFeature: function (feature, layer) {
+				var content = popupContentLocCab(feature);
+				layer.bindPopup(content);
+			}
+		});
+		var Parajes = L.geoJSON(locSec, {
+			pointToLayer: function (feature, latlng) {
+				return L.circleMarker(latlng, IconLocSec );
+			},
+			onEachFeature: function (feature, layer) {
+				var content = popupContentLocSec(feature);
+				layer.bindPopup(content);
+			}
+		});
+
+
 		var catastrosL = L.geoJSON(catastros, {
 			style: styleCatastro,
 			onEachFeature: function (feature, layer) {
@@ -141,11 +199,10 @@
 		});
 
 		var ESC = L.geoJSON(escuelas, {
-			pointToLayer: function (feature, latlng){
-				return L.circleMarker(latlng, MarkerESC);
+			pointToLayer: function (feature, latlng) {
+				return L.marker(latlng, { icon: escIcon });
 			},
-			style: styleESC,
-	
+
 			onEachFeature: function (feature, layer) {
 				var content = popupContentEsc(feature);
 				layer.bindPopup(content);
@@ -162,16 +219,33 @@
 				layer.bindPopup(content);
 			}
 		});
+		
+		var RELVSOLIDARIDAD = L.geoJSON(InfoSolidaridad,{
+			pointToLayer: function(feature, latlng){
+				return L.marker(latlng, { icon: redIcon })
+			},
+			onEachFeature: function(feature, layer){
+				var content = popupContentInfoSolidaridad(feature);
+				layer.bindPopup(content)
+			}
+		});
+	
 		//mapa//
 		var map = L.map('map', {
 			center: [-23.52030, -62.82378],
 			zoom: 8,
 			zoomControl: false,
-			layers: [google, RBN, RBS]
+			layers: [argenmap, DEPTO, Prov, Rutas, Localidad]
 
 		});
+
+		
 		// Grupos de capas
 		var baseLayers = [
+		{
+				name: "ArgenMap",
+				layer: argenmap,
+			},
 			{
 				name: "Open Street Map",
 				layer: osm,
@@ -215,17 +289,31 @@
 					},
 				]
 			},
+
 			{
-				group: "Info de Agua",
+				group: "Info Censal (2010)",
 				layers: [
 
-					{
+			,{
 						active: false,
-						name: "Mesas del agua",
-						layer: MESAS,
+						name: "Localidades Censales",
+						layer: Localidad,
 						transparent: true,
 						opacity: 0.5,
 					},
+					{
+						active: false,
+						name: "Parajes",
+						layer: Parajes,
+						transparent: true,
+						opacity: 0.5,
+					}]
+				},
+			{
+				group: "Escuelas",
+				layers: [
+
+					
 					{
 						active: false,
 						name: "Escuelas",
@@ -240,10 +328,24 @@
 			{
 				group: "Acceso al Agua",
 				layers: [
+				{
+						active: false,
+						name: "Data - Mesas del agua",
+						layer: MESAS,
+						transparent: true,
+						opacity: 0.5,
+					},
 					{
 						active: false,
-						name: "Acceso al agua por Puesto o Comunidad",
+						name: "Acceso al agua por<br> Puesto o Comunidad",
 						layer: PUESTOS,
+						transparent: true,
+						opacity: 0.5,
+					},
+					{
+						active: false,
+						name: "Data - Relevamiento Solidaridad",
+						layer: RELVSOLIDARIDAD,
 						transparent: true,
 						opacity: 0.5,
 					},
@@ -252,15 +354,13 @@
 			}
 		];
 
-
-
 		// colocar el logo 
 		L.Control.Watermark = L.Control.extend({
 			onAdd: function (map) {
 				var img = L.DomUtil.create('img');
 				img.src = 'images/logow.png';
 				img.style.width = '20vh', // vh para que sea responsive
-				img.style.height = 'auto'; // auto para que sera responsive
+					img.style.height = 'auto'; // auto para que sera responsive
 				return img;
 			},
 			onRemove: function (map) { },
@@ -287,13 +387,10 @@
 				position: 'topleft',
 			});
 		map.addControl(panelLayers1);
-		//panel de control agregado//
-
+	
 
 		// Insertando buscador
-
-		var title = L.control(
-		);
+		var title = L.control();
 		title.onAdd = function (map) {
 			var div = L.DomUtil.create('div', 'info');
 			div.innerHTML +=
@@ -334,15 +431,12 @@
 				PUESTOS.resetStyle(layer);
 			});
 		});
-
+		map.removeLayer(PUESTOS)
 
 		// Llamada a la función para crear la leyenda
 		createLegend();
 
-
-
-
-
+		
 		//se le agregan los controles//
 		L.control.zoom({ position: 'topright' }).addTo(map);
 		L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);

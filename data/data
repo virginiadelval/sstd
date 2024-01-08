@@ -10,3 +10,17 @@
  'Sin dato'
  'Techo cisterna'
  'Techo cisterna, Pozo de agua'
+
+
+
+    "Name": "LA UNION", 
+    "SITUACION": "GALPON DE ACOPIO",
+    "ESTADO": "Construida", 
+    "CONSTRUYE": "FUNDAPAZ", 
+    "VOL_CONST": "16.0", 
+    "Num_fami": "10.0", 
+    "NOm": "Galpon de acopio", 
+    "Tipo_const": "Techo cisterna", 
+    "Profundida": "No Corresponde"
+    
+{ "type": "Feature", "properties": { "Name": "2.0", "description": "Latitud: -23.751352<br>Longitud: -62.92847<br>P7: Lechería, Granja (cerdos, pollos, ovejas, peces etc.)<br>P19: 4<br>P20: Si<br>P21: Si<br>P23: Fuente Solar<br>P24: Leña<br>P26: Teléfono, Radio<br>P27: Si<br>P28: 3G<br>P29: Sala cerca<br>P35: Soy poseedor<br>P36: Si<br>P37: No<br>P38: No tiene titulo o contrato de alquiler<br>P39: No<br>P40: not_applicable<br>P41: not_applicable<br>P42: Si<br>P43: 600<br>P44: Si<br>P46: 0<br>P103: Cañadas, Bañados<br>P104: 6 a 9 meses<br>P105: No se encuentran cercadas<br>P106: Si<br>P107: No realicé ningún tipo de trabajo en las aguadas<br>P108: No<br>P109: No<br>P110: not_applicable<br>P111: Agua de lluvia \/ Cisterna<br>P112: Cañada, Arroyo<br>P113: not_applicable<br>P114: not_applicable<br>P115: not_applicable<br>P116: not_applicable<br>P117: No<br>P118: Sin tratamiento", "visibility": -1, "Latitud": "-23.751352", "Longitud": "-62.92847", "P7": "Lechería, Granja (cerdos, pollos, ovejas, peces etc.)", "P19": "4.0", "P20": "Si", "P21": "Si", "P23": "Fuente Solar", "P24": "Leña", "P26": "Teléfono, Radio", "P27": "Si", "P28": "3G", "P29": "Sala cerca", "P35": "Soy poseedor", "P36": "Si", "P37": "No", "P38": "No tiene titulo o contrato de alquiler", "P39": "No", "P40": "not_applicable", "P41": "not_applicable", "P42": "Si", "P43": "600", "P44": "Si", "P46": "0", "P103": "Cañadas, Bañados", "P104": "6 a 9 meses", "P105": "No se encuentran cercadas", "P106": "Si", "P107": "No realicé ningún tipo de trabajo en las aguadas", "P108": "No", "P109": "No", "P110": "not_applicable", "P111": "Agua de lluvia \/ Cisterna", "P112": "Cañada, Arroyo", "P113": "not_applicable", "P114": "not_applicable", "P115": "not_applicable", "P116": "not_applicable", "P117": "No", "P118": "Sin tratamiento" }, "geometry": { "type": "Point", "coordinates": [ -62.92847, -23.751352, 0.0 ] } },

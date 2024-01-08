@@ -21,8 +21,8 @@ function popupContentPuestos(feature) {
         "<b> Particular: </b>" + feature.properties.PARTICULAR + "<br>" +
         "<b> Prioridad: </b>" + feature.properties.PRIORIDAD + "<br>" +
         "<br>" +
-        "<b> Fuente de Información:  </b> <br>" +
-        "<b> Fecha de actualización:  </b> 2023 " +
+        "<b><i> Fuente de Información:  </b> <br>" +
+        "<b> Fecha de actualización:  </b> 2023  </i>" +
         "</div>"
     )
 };
@@ -89,9 +89,9 @@ function createLegend() {
             { label: 'Escuela', color: '#998ef0' },
             { label: 'Mangueras', color: '#bebada' },
             { label: 'Sin agua', color: '#fdb462' },
-            { label: 'Puesto vacios', color: '#80b1d3' },     
+            { label: 'Puesto vacios', color: '#80b1d3' },
             { label: 'Sin dato', color: '#000' },
-            
+
             // Agrega aquí el resto de estilos con su respectiva etiqueta y color
         ];
 
@@ -106,17 +106,18 @@ function createLegend() {
         return div;
     };
 
-   // Función para mostrar/ocultar la leyenda
-function toggleLegend() {
-    if (map.hasLayer(PUESTOS)) {
-        legend.addTo(map);
-    } else {
-        legend.remove();
+    // Función para mostrar/ocultar la leyenda
+    function toggleLegend() {
+        if (map.hasLayer(PUESTOS)) {
+            legend.addTo(map);
+        } else {
+            legend.remove();
+        }
     }
-}
-
-// Escucha el cambio de estado de la capa
-map.on('overlayadd overlayremove', toggleLegend);
+// Eliminar la leyenda al inicio
+legend.remove();
+    // Escucha el cambio de estado de la capa
+    map.on('overlayadd overlayremove', toggleLegend);
 }
 
 

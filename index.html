@@ -17,16 +17,16 @@
 	<link rel="stylesheet" href="css/leaflet-panel-layers.css" />
 	<link rel="stylesheet" href="css/L.Control.HtmlLegend.css" />
 	<link rel="stylesheet" href="css/leaflet-search.css" />
-	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-	<link rel="stylesheet" href="css/leaflet.awesome-markers.css" />
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+	<link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+	<link rel="stylesheet" href="css/leaflet.awesome-markers.css"/>
 
 
 	<!-- complemento awesomeMarker-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
 
-	<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+	<script src="https://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
 
 	<script src="js/leaflet-panel-layers.src.js"></script>
@@ -202,12 +202,6 @@
 			pointToLayer: function (feature, latlng) {
 				return L.marker(latlng, { icon: escIcon });
 			},
-<<<<<<< HEAD
-
-=======
-		
-	
->>>>>>> baa9ab7b5b74011c3b1526db2c79202bbf12c77d
 			onEachFeature: function (feature, layer) {
 				var content = popupContentEsc(feature);
 				layer.bindPopup(content);

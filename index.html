@@ -55,6 +55,7 @@
 	<script type="text/javascript" src="data/escuelas.js"></script>
 	<script type="text/javascript" src="data/puestosdata.js"></script>
 	<script type="text/javascript" src="data/info_RelevSolidaridad.js"></script>
+	<script type="text/javascript" src="data/geologico.js"></script>
 
 	<script type="text/javascript" src="js/mapa.js"></script>
 	<style>
@@ -187,15 +188,14 @@
 				]
 			},
 			{
-				group: "Geologia",
+				group: "Información Base",
 				collapsed: true,
 				layers: [
-
 					
 					{
 						active: false,
-						name: "Catastros",
-						layer: catastrosL,
+						name: "Unidades Geológicas (2.5M)",
+						layer: Geologia,
 						transparent: true,
 						opacity: 0.5,
 					},
@@ -226,8 +226,6 @@
 				group: "Escuelas",
 				collapsed: true,
 				layers: [
-
-
 					{
 						active: false,
 						name: "Escuelas",
@@ -235,8 +233,6 @@
 						transparent: true,
 						opacity: 0.5,
 					},
-
-
 				]
 			},
 			{
@@ -324,38 +320,36 @@
 		title.addTo(map);
 
 		// //buscador de datos. Solo para datos que sean json o geojson
-
 		var searchControl = new L.Control.Search({
 			layer: Parajes,
 			propertyName: 'NOMBRE',
 			circleLocation: false,
 			position: 'topright',
-			collapsed: false
+			collapsed: true
 		});
-
 		map.addControl(searchControl);
 
-		searchControl.on('search:locationfound', function (e) {
-			var tipoAbastecimiento = e.text; // Tipo de abastecimiento buscado
+		// searchControl.on('search:locationfound', function (e) {
+		// 	var tipoAbastecimiento = e.text; // Tipo de abastecimiento buscado
 
-			// Restaurar el estilo de todas las capas
-			PUESTOS.eachLayer(function (layer) {
-				PUESTOS.resetStyle(layer);
-			});
+		// 	// Restaurar el estilo de todas las capas
+		// 	PUESTOS.eachLayer(function (layer) {
+		// 		PUESTOS.resetStyle(layer);
+		// 	});
 
-			// Iterar sobre todas las capas y resaltar las que coinciden con el tipo de abastecimiento buscado
-			PUESTOS.eachLayer(function (layer) {
-				if (layer.feature.properties.TIPO_ABAST === tipoAbastecimiento) {
-					layer.setStyle({ fillColor: '#3f0', color: '#6bbdc9' });
-				}
-			});
-		}).on('search:collapsed', function (e) {
-			// Restaurar el estilo de todas las capas al cerrar la búsqueda
-			PUESTOS.eachLayer(function (layer) {
-				PUESTOS.resetStyle(layer);
-			});
-		});
-		map.removeLayer(PUESTOS)
+		// 	// Iterar sobre todas las capas y resaltar las que coinciden con el tipo de abastecimiento buscado
+		// 	PUESTOS.eachLayer(function (layer) {
+		// 		if (layer.feature.properties.TIPO_ABAST === tipoAbastecimiento) {
+		// 			layer.setStyle({ fillColor: '#3f0', color: '#6bbdc9' });
+		// 		}
+		// 	});
+		// }).on('search:collapsed', function (e) {
+		// 	// Restaurar el estilo de todas las capas al cerrar la búsqueda
+		// 	PUESTOS.eachLayer(function (layer) {
+		// 		PUESTOS.resetStyle(layer);
+		// 	});
+		// });
+		map.removeLayer(Parajes)
 
 		// Llamada a la función para crear la leyenda
 		createLegend();

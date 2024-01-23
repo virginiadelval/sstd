@@ -132,3 +132,11 @@ var RELVSOLIDARIDAD = L.geoJSON(InfoSolidaridad, {
 		layer.bindPopup(content)
 	}
 });
+
+var Geologia = L.geoJSON(geologico, {
+style: styleGeol,
+onEachFeature: function(feature, layer) {
+	var content = popupContentGeol(feature);
+	layer.bindPopup(content);
+}
+});

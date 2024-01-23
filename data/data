@@ -1,3 +1,69 @@
+"type": "Feature", "properties": { "sigla": "SDs", "nombre": "Sedimentitas marinas y continentales", "ambiente": "Ambiente mixto, plataforma siliciclástica. Cuenca de antepaís", "edad_inf": "Silúrico", "edad_sup": "Devónico", "litologia": "Limolitas, diamictitas, grauvacas, lutitas", "region": "Región I: Puna, Cordillera Oriental, Sierras Subandinas", "unidades": "Formaciones Mecoyita, Zapla, Lipeón y equivalentes", "ruleid": 151 }, "geometry":
+
+
+
+/* Estilo para la capa geologico_segemar_CLIP */
+.geologico_segemar_CLIP {
+    fill: #e5ffff;
+    stroke: #232323;
+    stroke-width: 1;
+    stroke-linejoin: bevel;
+  }
+  
+  /* Reglas para categorías específicas */
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='Cgm'] {
+    fill: #afafaf;
+  }
+  
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='KE'] {
+    fill: #d1ff0f;
+  }
+  
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='N2c'] {
+    fill: #ffdd99;
+  }
+  
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='N2f'] {
+    fill: #ffeacc;
+  }
+  
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='Nc'] {
+    fill: #ffff14;
+  }
+  
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='Qa'] {
+    fill: #fff7e5;
+  }
+  
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='Qfl'] {
+    fill: #b3fdb8;
+  }
+  
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='Ql'] {
+    fill: #efefef;
+  }
+  
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='Qlp-b'],
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='Qlp-l'],
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='Qlp-p'],
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='Qlp-s'] {
+    fill: #fff7e5;
+  }
+  
+  .geologico_segemar_CLIP[ogc\\:PropertyName='sigla'][ogc\\:Literal='SDs'] {
+    fill: #e8b789;
+  }
+  
+
+
+
+
+
+
+
+
+
+
 'Agua de Red'
  'Camion cisterna'
  'Cisterna, tanque'

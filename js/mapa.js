@@ -52,7 +52,6 @@ var Parajes = L.geoJSON(locSec, {
 	}
 });
 
-
 var catastrosL = L.geoJSON(catastros, {
 	style: styleCatastro,
 	onEachFeature: function (feature, layer) {
@@ -121,8 +120,6 @@ var PUESTOS = L.geoJSON(puestos, {
 	}
 });
 
-
-
 var RELVSOLIDARIDAD = L.geoJSON(InfoSolidaridad, {
 	pointToLayer: function (feature, latlng) {
 		return L.marker(latlng, { icon: redIcon })
@@ -140,3 +137,22 @@ onEachFeature: function(feature, layer) {
 	layer.bindPopup(content);
 }
 });
+
+var SubCuencas = L.geoJSON(subcuencas, {
+	
+	style: styleCuenca,
+	onEachFeature: function(feature, layer) {
+		var content = popupContentCuenca(feature);
+		layer.bindPopup(content);
+	}
+	});
+
+var Rios = L.geoJSON(rios, {
+	style: styleRios,
+	onEachFeature: function(feature, layer) {
+	var content = popupContentRios(feature);
+	layer.bindPopup(content);
+	}
+});
+	
+

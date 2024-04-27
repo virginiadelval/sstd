@@ -14,17 +14,17 @@ function popupContentInfoSolidaridad(feature) {
         "<div id='Estilo1'><h3>Data Relevamiento Solidaridad </h3></div>" +
         "<hr class='hrx' style='color: #ef7d26;' align='left' noshade='noshade' size='1' width='100%' />" +
         "<div id='Estilo3a'>" +
-        "<b> ID: </b>" + feature.properties.Name + "<br>" +
+        // "<b> ID: </b>" + feature.properties.Name + "<br>" +
         "<b> Cantidad de Personas que integran el grupo familiar : </b>" + feature.properties.P19 + "<br>" +
-        "<b> Tipo de tenencia: </b>" + feature.properties.P35 + "<br>" +
-        "<b> Número total de hectareas: </b>" + feature.properties.P45 + "<br>" +
-        "<b> Campo con Aguada: </b>" + feature.properties.P103 + "<br>" +
-        "<b> Como se abastece de agua para consumo: </b>" + feature.properties.P111 + "<br>" +
-        "<b> Como se abastece de agua a los animales: </b>" + feature.properties.P112 + "<br>" +
-        "<b> Profundidad del Pozo de agua: </b>" + feature.properties.P113 + "<br>" +
-        "<b> Qué calidad de agua tiene :</b>" + feature.properties.P114 + "<br>" +
-        "<b> Los animales consumen la misma agua que utiliza para el consumo humano :</b>" + feature.properties.P117 + "<br>" +
-        "<b> Realiza algún tratamiento para el agua de consumo :</b>" + feature.properties.P118 + "<br>" +
+        "<b> ¿Su campo posee aguadas?: </b>" + feature.properties.P103 + "<br>" +
+        "<b> ¿Cuánto tiempo conservan el agua? :</b>" + feature.properties.P104 + "<br>" +
+        "<b> ¿Las aguadas se encuentran cercadas? : </b>" + feature.properties.P105 + "<br>" +
+        "<b> ¿Cómo se abastece de agua para consumo? </b>" + feature.properties.P111 + "<br>" +
+        "<b> ¿Cómo se abastece de agua para los animales? </b>" + feature.properties.P112 + "<br>" +
+        // "<b> Profundidad del Pozo de agua: </b>" + feature.properties.P113 + "<br>" +
+        // "<b> Qué calidad de agua tiene :</b>" + feature.properties.P114 + "<br>" +
+        // "<b> Los animales consumen la misma agua que utiliza para el consumo humano :</b>" + feature.properties.P117 + "<br>" +
+        // "<b> Realiza algún tratamiento para el agua de consumo :</b>" + feature.properties.P118 + "<br>" +
         
         "<br>" +
         "<b> <i> Fuente de Información:  </b> Información recolectada en base a relevamiento de campo realizada por el equipo técnico que trabaja en la implementación del Proyecto Ganadería Regenerativa para pequeños productores en el Chaco Seco, implementado por Solidaridad con el apoyo de Asociación Civil Unión y Progreso. <br>" +
